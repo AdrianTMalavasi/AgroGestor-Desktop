@@ -1,0 +1,47 @@
+<%- include('../partes/head') %>
+
+<body>
+    <%- include('../partes/header') %>
+
+    <div class="formulario">
+		<%- include('../partes/notificacao') %>
+        <div class="formCenter login">
+            <form action="/safra/salvar" method="post"> 
+                <h3 class="title">Formulario de Safra</h3>
+                
+                <div class="form-group">
+                    <label for="hectares">Hectares</label>
+                    <input type="text" id="hectares" name="hectares" value="<%=safra.hectares%>" placeholder="Digite a quantidade de hectares">
+                </div>
+
+                <div class="form-group">
+                    <label for="ano" >Ano da Saca:</label>
+                    <input type="text" id="ano" name="ano" value="<%=safra.ano%>" placeholder="Digite o Ano">
+                </div>
+
+                <div class="form-group">
+                    <select id="idUsua" name="idUsua" class="custom-select">
+                        <option value="" selected disabled>Selecione uma Safra</option >
+                            <% usuarios.forEach(function(usuario) { %>
+                                <option value="<%= usuario.idUsua %>" <%= safra.idUsua == usuario.idUsua ? 'selected' : '' %> >
+                                    <%= usuario.login %>
+                                </option>
+                            <% }) %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="idEsto" >Selecione um Estoque:</label>
+                    <select id="idEsto" name="idEsto" class="custom-select">
+                        <% estoques.forEach(function(estoque) { %>
+                            <option value="<%= estoque.idEsto %>"><%= estoque.nomeLugar%></option>
+                          <% }) %>
+                    </select>
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+    <%- include('../partes/footer') %>
+</body>
+</html>

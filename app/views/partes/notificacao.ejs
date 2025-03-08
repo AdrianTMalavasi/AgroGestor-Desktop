@@ -1,0 +1,10 @@
+<% if (validacao.length > 0) { %>
+    <div class="alert-danger">
+        <strong>Atenção!</strong>
+        <ul>
+            <% for (let i = 0; i < validacao.length; i++) { %>
+                <li><%= validacao[i].msg %></li>
+            <% } %>
+        </ul>
+    </div>
+<% } %>

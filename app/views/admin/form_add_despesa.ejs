@@ -1,0 +1,57 @@
+<%- include('../partes/head') %>
+
+<body>
+	<%-include('../partes/header')%>
+	<div class="formulario">
+		<%- include('../partes/notificacao') %>
+		<div class="formCenter login">
+			<form action="/despesa/salvar" method="post"> 
+				<h3 class="title">Formulario de Despesa</h3>
+				<div class="form-group">
+					<label for="nomeEmpresa">Nome da Empresa:</label>
+					<input type="text" class="form-control" id="nomeEmpresa" name="nomeEmpresa" value="<%=despesa.nomeEmpresa%>" placeholder="Digite o nome da empresa">
+				</div>
+			
+				<div class="form-group">
+					<label for="descricao">Descrição:</label>
+					<input type="text" class="form-control" id="descricao" name="descricao" value="<%=despesa.descricao%>" placeholder="Descreva a despesa">
+				</div>
+
+				<div class="form-group">
+					<label for="valorTotal">Valor:</label>
+					<input type="text" class="form-control" id="valorTotal" name="valorTotal" value="<%=despesa.valorTotal%>" placeholder="Informe o valor total">
+				</div>
+			
+				<div class="form-group">
+					<label for="diasPagar">Tempo pra Pagar:</label>
+					<input type="text" class="form-control" id="diasPagar" name="diasPagar" value="<%=despesa.diasPagar%>" placeholder="Prazo para pagamento">
+				</div>
+			
+				<div class="form-group">
+					<label for="dataCompra">Data da Compra:</label>
+					<input type="date" class="form-control" id="dataCompra" name="dataCompra" value="<%=despesa.dataCompra%>">
+				</div>
+			
+				<div class="form-group">
+					<section>
+						<label for="mtdPagamento">Método de Pagamento</label>
+						<select name="mtdPagamento" id="mtdPagamento">
+							<option value="" selected disabled>Selecione um Método de Pagamento</option>
+							<option value="Pix">PIX</option>
+							<option value="Cheque">Cheque</option>
+							<option value="Transferencia">Transferencia</option>
+							<option value="Dinheiro">Dinheiro</option>
+							<option value="Boleto">Boleto</option>
+							<option value="Cartão">Cartão</option>
+						</select>
+					</section>
+				</div>
+				<button type="submit" class="button">Registrar</button>
+			</form>						
+		</div>
+
+	</div>
+	<%- include('../partes/footer') %>
+</body>
+
+</html>

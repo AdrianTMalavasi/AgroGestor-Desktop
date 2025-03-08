@@ -1,0 +1,69 @@
+<%- include('../partes/head') %>
+
+	<body>
+		<%-include('../partes/header')%>
+			<div class="formulario">
+				<%- include('../partes/notificacao') %>
+					<div class="formCenter login">
+						<form action="/despesa/update/<%=despesa[0].idDesp%>" method="post">
+							<h3 class="title">Formulario de Despesa</h3>
+							<input type="hidden" name="idDesp" value="<%=despesa[0].idDesp%>">
+							<div class="form-group">
+								<label for="nomeEmpresa">Nome da Empresa:</label>
+								<input type="text" class="form-control" id="nomeEmpresa" name="nomeEmpresa"
+									value="<%=despesa[0].nomeEmpresa%>">
+							</div>
+
+							<div class="form-group">
+								<label for="descricao">Descrição:</label>
+								<input type="text" class="form-control" id="descricao" name="descricao"
+									value="<%=despesa[0].descricao%>">
+							</div>
+
+							<div class="form-group">
+								<label for="valorTotal">Valor:</label>
+								<input type="text" class="form-control" id="valorTotal" name="valorTotal"
+									value="<%=despesa[0].valorTotal%>">
+							</div>
+
+							<div class="form-group">
+								<label for="diasPagar">Tempo pra Pagar:</label>
+								<input type="text" class="form-control" id="diasPagar" name="diasPagar"
+									value="<%=despesa[0].diasPagar%>">
+							</div>
+
+							<div class="form-group">
+								<label for="dataCompra">Data da Compra:</label>
+								<input type="date" class="form-control" id="dataCompra" name="dataCompra"
+									value="<%=despesa[0].dataCompra%>">
+							</div>
+
+							<div class="form-group">
+								<section>
+									<label for="mtdPagamento">Método de Pagamento</label>
+									<select name="mtdPagamento" id="mtdPagamento">
+										<% const metodosPagamento=['Pix', 'Cheque' , 'Transferencia' , 'Dinheiro', 'Boleto' ,'Cartão']; %>
+											<option value="<%= despesa[0].mtdPagamento %>" selected>
+												<%= despesa[0].mtdPagamento %>
+											</option>
+
+
+											<% metodosPagamento.forEach(function(metodo) { %>
+												<% if (metodo !==despesa[0].mtdPagamento) { %>
+													<option value="<%= metodo %>">
+														<%= metodo %>
+													</option>
+													<% } %>
+														<% }) %>
+									</select>
+								</section>
+							</div>
+							<button type="submit" class="button">Registrar</button>
+						</form>
+					</div>
+
+			</div>
+			<%- include('../partes/footer') %>
+	</body>
+
+	</html>
