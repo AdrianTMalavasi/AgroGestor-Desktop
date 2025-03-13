@@ -1,0 +1,34 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-input");
+    const vendaItems = document.querySelectorAll(".venda-item");
+    const exibirTotal = document.querySelector(".exibirTotal"); // Pegamos a div do total
+
+    searchInput.addEventListener("input", function () {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let algumaVendaVisivel = false; // Para verificar se há alguma venda visível
+
+        vendaItems.forEach(item => {
+            const nomeEmpresa = item.querySelector(".venda").textContent.toLowerCase().trim(); // Nome da produção
+            const dataProducaoElement = item.querySelector(".venda-data");
+            const dataProducao = dataProducaoElement ? dataProducaoElement.textContent.toLowerCase().trim() : "";
+
+            // Verifica se o termo está presente no nome da produção ou na data da produção
+            if (nomeEmpresa.includes(searchTerm) || dataProducao.includes(searchTerm)) {
+                item.style.display = "flex"; // Mostra a venda se corresponder
+                algumaVendaVisivel = true;
+            } else {
+                item.style.display = "none"; // Esconde se não corresponder
+            }
+        });
+
+        // Se houver busca ativa, esconde a div de total. Se não houver, exibe novamente.
+        if (searchTerm.length > 0) {
+            exibirTotal.style.display = "none";
+        } else {
+            exibirTotal.style.display = "flex";
+        }
+    });
+});
+
+</script>

@@ -15,8 +15,8 @@ app.use(expressSession({
     saveUninitialized : false
 }));
 consign()
-    .include('app/routes')
-    .then('config/db_connection.js')
+    .include('config/db_connection.js')
+    .then('app/routes')
     .then('app/models')
     .then('app/controllers')
     .into(app);

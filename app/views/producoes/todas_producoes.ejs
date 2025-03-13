@@ -1,0 +1,81 @@
+<%-include('../partes/head')%>
+	<body>
+		<%-include('../partes/header')%>
+			<div class="vendas-container">
+				<div class="search-center">
+					<div class="search-container">
+						<span class="iconify search-icon" data-icon="mdi:magnify"></span>
+						<input type="text" class="search-input" placeholder="Buscar por data...">
+					</div>
+					<% if (idSafra !=false) { %>
+						<div>
+							<a href="/add_producao">
+								<button class="register-button">
+									<span class="iconify buttonAdicionar" data-icon="tabler:cash-register"></span>
+								</button>
+							</a>
+						</div>
+						<% } else { %>
+							<div class="nomeSafra">
+								<h3>Todas as Produções</h3>
+							</div>
+							<% } %>
+				</div>
+				<% 
+					var exibirQtdSacasTotal = 0;
+				%>	
+				<% if (producoes.length > 0) { %>
+					<% for(var i=0; i<producoes.length; i++) { %>
+						<div class="venda-item">
+							<div class="venda-wrapper">
+								<a class="venda">
+									Produção <%=i+1%>
+								</a>
+								<p class="sacas">
+									<strong>Quantidade:</strong>
+									<%=producoes[i].qtdSacas%> sacas
+								</p>
+								<%
+									exibirQtdSacasTotal += producoes[i].qtdSacas
+								%>
+							</div>
+							<div class="vendaFrenteData">
+								<span class="venda-data">
+									<strong></strong> <%=producoes[i].dataProducao.toLocaleDateString('pt-br')%>
+								</span>
+							</div>
+							<div class="venda-actions">
+								<a href="/editar_producao/<%=producoes[i].idProd%>"><button class="edit-button"
+										class="delete-button">
+										<span class="iconify" data-icon="mdi:pencil"> </span> Editar
+									</button></a>
+
+								<a href="/producao/excluir/<%=producoes[i].idProd%>"><button class="delete-button"
+										onclick="return confirm('Tem certeza que deseja excluir?');">
+										<span class="iconify" data-icon="mdi:trash-can-outline"></span> Excluir
+									</button></a>
+							</div>
+						</div>
+						<% } %>
+						<div class="exibirTotal">
+							<div class="vendaFrenteData">
+								<p class="sacas" style="font-size: 20px;">
+									<strong>Total de Produções: </strong>
+									<%= i %> 
+								</p>
+							</div>
+							<div class="vendaFrenteData">
+								<p class="sacas" style="font-size: 20px;">
+									<strong>Quantidade total: </strong>
+									<%= exibirQtdSacasTotal %> sacas
+								</p>
+							</div>
+						</div>
+					<% } else { %>
+						<h2>Nenhuma produção encontrada.</h2>
+					<% } %>
+			</div>
+			<%-include('../partes/footer')%>
+	</body>
+	<%-include('../partes/pesquisa')%>
+	</html>

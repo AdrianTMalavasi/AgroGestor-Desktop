@@ -1,24 +1,43 @@
 <%- include('../partes/head') %>
-
 	<body>
 		<%- include('../partes/header') %>
 			<div class="Safra">
-				<div class="fundo-cafe ">
-					<h3 class="titulo-safras">Selecione a Safra</h3>
+				<div class="fundo-cafe">
+					<p class="titulo-safras">Selecione um destino</p>
 
 					<div class="form-group">
 						<select id="safraSelect" name="safraSelect" class="custom-select">
-							<option value="" selected disabled>Selecione uma Safra</option >
+							<option value="0" selected disabled>Selecione uma opção</option>
+							<option value="estoque" >Estoque</option>
 							<% safras.forEach(function(safra) { %>
-								<option value="<%= safra.ano %>"><%= safra.ano%></option>
+								<option value="<%= safra.idSafr %>">Safra de <%= safra.ano %></option>
 							  <% }) %>
 						</select>
 					</div>
 				</div>
-				<a href="/add_safra"><button class="btn-registrar-safra">Registrar Nova Safra</button></a>
+				<div class="registerHome">
+					<a href="/add_safra"><button class="btnRegistrar">Registrar nova safra</button></a>
+					<a href="/add_estoque"><button class="btnRegistrar">Registrar novo estoque</button></a>
+				</div>
 			</div>
 
 			<%- include('../partes/footer') %>
 	</body>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+			const safraSelect = document.getElementById("safraSelect");
 
+			if (safraSelect) {
+				safraSelect.addEventListener("change", function () {
+					let selectedValue = this.value;
+
+					if (selectedValue === "estoque") {
+						window.location.href = "/todos_estoques";
+					} else {
+						window.location.href = "/todas_producoes?id_safra=" + selectedValue;
+					}
+				});
+			}
+		});
+		</script>
 	</html>

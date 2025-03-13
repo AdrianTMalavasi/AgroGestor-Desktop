@@ -1,0 +1,31 @@
+<%- include('../partes/head') %>
+
+<body>
+	<%-include('../partes/header')%>
+	<div class="formulario">
+		<%- include('../partes/notificacao') %>
+		<div class="formCenter login">
+
+			<a href="javascript:history.back()" class="buttonVoltar">
+				<span class="iconify" data-icon="mdi:arrow-left" data-inline="false" style="font-size: 22px;color: white; align-self: flex-start;"></span>
+			</a>
+			<form action="/producao/salvar" method="post"> 
+				<h3 class="title">Formulario de Produção</h3>
+                <div class="form-group">
+					<label for="dataProducao">Data da Produção:</label>
+					<input type="date" class="form-control" id="dataProducao" name="dataProducao" value="<%=producao.dataProducao%>">
+				</div>
+
+				<div class="form-group">
+					<label for="qtdSacas">Quantidade de Sacas</label>
+					<input type="text" class="form-control" id="qtdSacas" name="qtdSacas" value="<%=producao.qtdSacas%>" placeholder="Digite a quantidade de Sacas">
+				</div>
+				<button type="submit" class="button">Registrar</button>
+			</form>						
+		</div>
+
+	</div>
+	<%- include('../partes/footer') %>
+</body>
+
+</html>

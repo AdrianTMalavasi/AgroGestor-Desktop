@@ -1,30 +1,30 @@
 <%- include('../partes/head') %>
 
-	<body>
-		<%- include('../partes/header') %>
-			<div class="formulario ">
-				<%- include('../partes/notificacao') %>
-					<div class="formCenter login">
-						<h3>LOGIN</h3>
-						<form action="/autenticar" method="post">
-							<div class="form-group">
-								<label for="login">Usuário:</label>
-								<input type="text" id="login" name="login" placeholder="Usuário">
-							</div>
+<body>
+	<%- include('../partes/header') %>
+		<div class="formulario ">
+			<%- include('../partes/notificacao') %>
+				<div class="formCenterL login">
+					<h3>LOGIN</h3>
+					<form action="/autenticar" method="post">
+						<div class="form-group">
+							<label for="login">Usuário:</label>
+							<input type="text" id="login" name="login" placeholder="Digite o usuário...">
+						</div>
 
-							<div class="form-group">
-								<label for="senha">Senha:</label>
-								<input type="password" id="senha" name="senha" placeholder="Senha">
-							</div>
-
-							<button type="submit" class="submit">Entrar</button>
-
-						</form>
+						<div class="form-group">
+							<label for="senha">Senha:</label>
+							<input type="password" id="senha" name="senha" placeholder="Digite a senha...">
+							
+						</div>
+						<button type="submit" class="submit">Entrar</button>
+					</form>
+					<div class="register-link">
+						<a href="/add_usuario" style="color: WHITE;">Criar uma conta</a>
 					</div>
-			</div>
+				</div>
+		</div>
+		<%- include('../partes/footer') %>
+</body>
 
-			<%- include('../partes/footer') %>
-
-	</body>
-
-	</html>
+</html>

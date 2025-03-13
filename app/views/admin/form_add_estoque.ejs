@@ -1,0 +1,28 @@
+<%- include('../partes/head') %>
+<body>
+    <%- include('../partes/header') %>
+    <div class="formulario">
+		<%- include('../partes/notificacao') %>
+        <div class="formCenter login">
+            <a href="javascript:history.back()" class="buttonVoltar">
+				<span class="iconify" data-icon="mdi:arrow-left" data-inline="false" style="font-size: 22px;color: white; align-self: flex-start;"></span>
+			</a>
+            <form action="/estoque/salvar" method="post"> 
+                <h3 class="title">Formulário de estoque</h3>
+                
+                <div class="form-group">
+                    <label for="nomeLugar">Nome do Depósito:</label>
+                    <input type="text" id="nomeLugar" name="nomeLugar" value="<%=estoque.nomeLugar%>" placeholder="Digite uma Localização">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidadeMax" >Capacidade do estoque:</label>
+                    <input type="text" id="quantidadeMax" name="quantidadeMax" value="<%=estoque.quantidadeMax%>" placeholder="Digite a capacidade máxima de sacos">
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+    <%- include('../partes/footer') %>
+</body>
+</html>

@@ -5,6 +5,9 @@
 			<div class="formulario">
 				<%- include('../partes/notificacao') %>
 					<div class="formCenter login">
+						<a href="javascript:history.back()" class="buttonVoltar">
+							<span class="iconify" data-icon="mdi:arrow-left" data-inline="false" style="font-size: 22px;color: white; align-self: flex-start;"></span>
+						</a>
 						<form action="/despesa/update/<%=despesa[0].idDesp%>" method="post">
 							<h3 class="title">Formulario de Despesa</h3>
 							<input type="hidden" name="idDesp" value="<%=despesa[0].idDesp%>">

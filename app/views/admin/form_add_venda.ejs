@@ -7,8 +7,10 @@
 		<%- include('../partes/notificacao') %>
         <div class="formCenter login">
             <form action="/venda/salvar" method="post"> 
-                <h3 class="title">Formulario de Venda</h3>
-                
+                <a href="javascript:history.back()" class="buttonVoltar">
+                    <span class="iconify" data-icon="mdi:arrow-left" data-inline="false"  style="font-size: 22px;color: white; align-self: flex-start;"></span>
+                </a>
+                <h3 class="title">Formulario de Venda</h3>          
                 <div class="form-group">
                     <label for="nomeEmpresa">Nome da Empresa:</label>
                     <input type="text" id="nomeEmpresa" name="nomeEmpresa" value="<%=venda.nomeEmpresa%>" placeholder="Digite o nome da empresa">
@@ -32,7 +34,7 @@
                 <div class="form-group">
                         <label for="mtdPagamento" >Método de Pagamento</label>
                         <select name="mtdPagamento" id="mtdPagamento">
-                            <option value="" selected disabled>Selecione um Método de Pagamento</option>
+                            <option value="" selected disabled>Selecione um Método</option>
                             <option value="Pix">Pix</option>
                             <option value="Cheque">Cheque</option>
                             <option value="Transferencia">Transferencia</option>

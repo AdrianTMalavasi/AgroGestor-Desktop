@@ -1,63 +1,98 @@
 <%-include('../partes/head')%>
+
 	<body>
 		<%-include('../partes/header')%>
 			<div class="vendas-container">
 				<div class="search-center">
 					<div class="search-container">
 						<span class="iconify search-icon" data-icon="mdi:magnify"></span>
-						<input type="text" class="search-input" placeholder="Buscar...">
+						<input type="text" class="search-input" placeholder="Buscar por empresa ou data...">
 					</div>
+					<% if (idSafra != false) { %>
 					<div>
 						<a href="/add_venda">
-							<button class="register-button" >
-								<span class="iconify" data-icon="tabler:cash-register"></span>
-								
+							<button class="register-button">
+								<span class="iconify buttonAdicionar" data-icon="tabler:cash-register"></span>
+
 							</button>
 						</a>
 					</div>
-				</div>
-				<% for (let i=0; i < vendas.length; i++) { %>
-					<div class="venda-item">
-						<div class="venda-wrapper">
-							<a class="venda">
-								<%= vendas[i].nomeEmpresa %>
-							</a>
-							<p class="sacas">
-								<strong>Quantidade de Sacas:</strong>
-								<%=vendas[i].qtdSacas%> Sacas
-							</p>
-
-							<p class="venda_valor">
-								<strong>Valor por Saca:</strong> R$ <%=vendas[i].valorSaca%>
-							</p>
-
-							<p class="venda_metodo">
-								<strong>Método de Pagamento:</strong>
-								<%= vendas[i].mtdPagamento %>
-							</p>
+					<% } else { %>
+						<div class="nomeSafra">
+							<h3>Todas as Vendas</h3>
 						</div>
+					<% } %>
+				</div>
+				<% 
+					var exibirValorTotal = 0; 
+					var exibirQtdSacasTotal = 0;
+				%>
+				<% if (vendas.length > 0) { %>
+					<% for (let i=0; i < vendas.length; i++) { %>
+						<div class="venda-item">
+							<div class="venda-wrapper">
+								<a class="venda">
+									<%= vendas[i].nomeEmpresa %>
+								</a>
+								<p class="sacas">
+									<strong>Quantidade de Sacas:</strong>
+									<%=vendas[i].qtdSacas%> sacas
+								</p>
+
+								<p class="venda_valor">
+									<strong>Valor por Saca:</strong> R$ <%=vendas[i].valorSaca%>
+								</p>
+
+								<p class="venda_metodo">
+									<strong>Método de Pagamento:</strong>
+									<%= vendas[i].mtdPagamento %>
+								</p>
+							</div>
 							<div class="vendaFrenteData">
 								<span class="venda-data">
 									<strong></strong> <%=vendas[i].dataVenda.toLocaleDateString('pt-br')%>
 								</span>
 								<span class="venda-data">
 									<strong></strong>
-									<%=vendas[i].qtdSacas * vendas[i].valorSaca%>,00
+									Valor total: R$ <%=vendas[i].qtdSacas * vendas[i].valorSaca%>,00
 								</span>
+								<%
+									exibirValorTotal += vendas[i].qtdSacas * vendas[i].valorSaca;
+									exibirQtdSacasTotal += vendas[i].qtdSacas
+								%>
 							</div>
 							<div class="venda-actions">
-								<a href="/editar_venda/<%=vendas[i].idVend%>"><button class="edit-button" class="delete-button">
-									<span class="iconify" data-icon="mdi:pencil"> </span> Editar
-								</button></a>
+								<a href="/editar_venda/<%=vendas[i].idVend%>"><button class="edit-button"
+										class="delete-button">
+										<span class="iconify" data-icon="mdi:pencil"> </span> Editar
+									</button></a>
 
-								<a href="/venda/excluir/<%=vendas[i].idVend%>" ><button class="delete-button" onclick="return confirm('Tem certeza que deseja excluir?');">
-									<span class="iconify" data-icon="mdi:trash-can-outline" ></span> Excluir
-								</button></a>
+								<a href="/venda/excluir/<%=vendas[i].idVend%>"><button class="delete-button"
+										onclick="return confirm('Tem certeza que deseja excluir?');">
+										<span class="iconify" data-icon="mdi:trash-can-outline"></span> Excluir
+									</button></a>
 							</div>
-					</div>
+						</div>
 					<% } %>
-			</div>
+					<div class="exibirTotal">
+						<div class="vendaFrenteData">
+							<p class="sacas" style="font-size: 20px;">
+								<strong>Quantidade total: </strong>
+								<%= exibirQtdSacasTotal %> sacas
+							</p>
+						</div>
+						<div class="vendaFrenteData" >
+							<p class="sacas" style="font-size: 20px;">
+								<strong>Valor total de venda: </strong>
+								R$ <%= exibirValorTotal %>,00
+							</p>
+						</div>
+					</div>
+			<% } else { %>
+				<h2>Nenhuma venda encontrada.</h2>
+			<% } %>
+		</div>
 			<%-include('../partes/footer')%>
 	</body>
-
+			<%-include('../partes/pesquisa')%>
 	</html>

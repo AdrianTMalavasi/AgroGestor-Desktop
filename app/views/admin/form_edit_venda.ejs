@@ -7,6 +7,9 @@
 		<%- include('../partes/notificacao') %>
         <div class="formCenter login">
             <form action="/venda/update/<%=venda[0].idVend%>" method="post"> 
+                <a href="javascript:history.back()" class="buttonVoltar">
+                    <span class="iconify" data-icon="mdi:arrow-left" data-inline="false" style="font-size: 22px;color: white; align-self: flex-start;"></span>
+                </a>
                 <h3 class="title">Formulario de Edição</h3>
                 <input type="hidden" name="idVend" value="<%=venda[0].idVend%>">
                 <div class="form-group">

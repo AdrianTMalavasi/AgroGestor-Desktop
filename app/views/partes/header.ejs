@@ -2,24 +2,56 @@
     <div class="header">
         <div class="navbar-header">
             <!-- Logo e nome AgroGestor alinhados corretamente -->
-                <img src="/images/logo.png" class="logo">
-                <span class="brand-name">AGROGESTOR</span>
+            <img src="/images/logo.png" class="logo">
+            <span class="brand-name">AGROGESTOR</span>
         </div>
-    
+
         <!-- Inclui a barra de navegação -->
         <nav class="navbar">
             <ul class="nav-menu">
                 <%if(flagAdmin == true){%>
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/estoque">ESTOQUE</a></li>
-                    <li><a href="/todas_vendas">VENDAS</a></li>
-                    <li><a href="/todas_despesas">DESPESAS</a></li>
-                    <li><a href="/sair">SAIR</a></li>
-                <%}else{%>
-                    <li><a href="/login">LOGIN</a></li>
-                <%}%>
+                    <li class="centerIcon">
+                        <a href="/">
+                            <span class="iconify" data-icon="fa6-solid:house"></span>
+                            HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas_producoes"><span class="iconify" data-icon="ri:plant-fill"></span>
+                            PRODUÇÃO
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas_vendas"><span class="iconify" data-icon="fa6-solid:sack-dollar"></span>
+                            VENDAS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/todas_despesas"><span class="iconify" data-icon="ic:sharp-money-off"></span>
+                            DESPESAS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/sair">
+                            <span class="iconify" data-icon="fa6-solid:arrow-right-from-bracket"></span>
+                            SAIR
+                        </a>
+                    </li>
+                    <%}else{%>
+                        <li>
+                            <a href="/login">
+                                <span class="iconify" data-icon="fa6-solid:arrow-right-to-bracket"></span>
+                                LOGIN
+                            </a>
+                        <li>
+                        <li>
+                            <a href="/add_usuario">
+                                <span class="iconify" data-icon="fa6-solid:arrow-right-from-bracket"></span>
+                                REGISTRAR
+                            </a>
+                        </li>
+                    <%}%>
             </ul>
         </nav>
     </div>
 </header>
-

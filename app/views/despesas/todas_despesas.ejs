@@ -6,59 +6,88 @@
 				<div class="search-center">
 					<div class="search-container">
 						<span class="iconify search-icon" data-icon="mdi:magnify"></span>
-						<input type="text" class="search-input" placeholder="Buscar...">
+						<input type="text" class="search-input" placeholder="Buscar por empresa ou data...">
 					</div>
+					<% if (idSafra != false) { %>
 					<div>
 						<a href="/add_despesa">
 							<button class="register-button">
-								<span class="iconify" data-icon="tabler:cash-register"></span>
-
+								<span class="iconify buttonAdicionar" data-icon="tabler:cash-register"></span>
 							</button>
 						</a>
 					</div>
+					<% }else{ %>
+						<div class="nomeSafra">
+							<h3>Todas as Despesas</h3>
+						</div>
+					<% } %>
 				</div>
-				<%for(let i=0;i<despesas.length;i++){%>
-					<div class="venda-item">
-						<div class="venda-wrapper">
-							<a class="venda">
-								<%= despesas[i].nomeEmpresa %>
-							</a>
-							<p class="sacas">
-								<strong>Descrição:</strong>
-								<%=despesas[i].descricao%>
-							</p>
+				<% 
+					var exibirValorTotal = 0; 
+				%>
+				<% if (despesas.length > 0) { %>
+					<%for(var i=0;i<despesas.length;i++){%>
+						<div class="venda-item">
+							<div class="venda-wrapper">
+								<a class="venda">
+									<%= despesas[i].nomeEmpresa %>
+								</a>
+								<p class="sacas">
+									<strong>Descrição:</strong>
+									<%=despesas[i].descricao%>
+								</p>
 
-							<p class="venda_valor">
-								<strong>Dias para Pagar:</strong><%=despesas[i].diasPagar%> Dias
-							</p>
+								<p class="venda_valor">
+									<strong>Dias para Pagar:</strong><%=despesas[i].diasPagar%> dias
+								</p>
 
-							<p class="venda_metodo">
-								<strong>Método de Pagamento:</strong>
-								<%= despesas[i].mtdPagamento %>
-							</p>
+								<p class="venda_metodo">
+									<strong>Método de Pagamento:</strong>
+									<%= despesas[i].mtdPagamento %>
+								</p>
+							</div>
+							<div class="vendaFrenteData">
+								<span class="venda-data">
+									<strong></strong> <%=despesas[i].dataCompra.toLocaleDateString('pt-br')%>
+								</span>
+								<span class="venda-data">
+									<strong></strong>
+									Valor total: R$ <%=despesas[i].valorTotal%>,00
+								</span>
+								<%
+									exibirValorTotal += despesas[i].valorTotal
+								%>
+							</div>
+							<div class="venda-actions">
+								<a href="/editar_despesa/<%=despesas[i].idDesp%>"><button class="edit-button" class="delete-button">
+									<span class="iconify" data-icon="mdi:pencil"> </span> Editar
+								</button></a>
+
+								<a href="/despesa/excluir/<%=despesas[i].idDesp%>" ><button class="delete-button" onclick="return confirm('Tem certeza que deseja excluir?');">
+									<span class="iconify" data-icon="mdi:trash-can-outline" ></span> Excluir
+								</button></a>
+							</div>
 						</div>
+					<% } %>
+					<div class="exibirTotal">
 						<div class="vendaFrenteData">
-							<span class="venda-data">
-								<strong></strong> <%=despesas[i].dataCompra.toLocaleDateString('pt-br')%>
-							</span>
-							<span class="venda-data">
-								<strong></strong>
-								R$ <%=despesas[i].valorTotal%>,00
-							</span>
+							<p class="sacas" style="font-size: 20px;">
+								<strong>Total de Despesas: </strong>  
+								<%= i %> 
+							</p>
 						</div>
-						<div class="venda-actions">
-							<a href="/editar_despesa/<%=despesas[i].idDesp%>"><button class="edit-button" class="delete-button">
-								<span class="iconify" data-icon="mdi:pencil"> </span> Editar
-							</button></a>
-
-							<a href="/despesa/excluir/<%=despesas[i].idDesp%>" ><button class="delete-button" onclick="return confirm('Tem certeza que deseja excluir?');">
-								<span class="iconify" data-icon="mdi:trash-can-outline" ></span> Excluir
-							</button></a>
+						<div class="vendaFrenteData" >
+							<p class="sacas" style="font-size: 20px;">
+								<strong>Valor total de despesa: </strong>
+								R$ <%= exibirValorTotal %>,00
+							</p>
 						</div>
 					</div>
-					<% } %>
+				<% } else { %>
+					<h2>Nenhuma despesa encontrada.</h2>
+				<% } %>
 			</div>
 			<%-include('../partes/footer')%>
 	</body>
-
+			<%-include('../partes/pesquisa')%>
 	</html>

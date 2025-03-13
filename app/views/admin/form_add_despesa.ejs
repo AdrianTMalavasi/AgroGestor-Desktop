@@ -5,6 +5,10 @@
 	<div class="formulario">
 		<%- include('../partes/notificacao') %>
 		<div class="formCenter login">
+
+			<a href="javascript:history.back()" class="buttonVoltar">
+				<span class="iconify" data-icon="mdi:arrow-left" data-inline="false" style="font-size: 22px;color: white; align-self: flex-start;"></span>
+			</a>
 			<form action="/despesa/salvar" method="post"> 
 				<h3 class="title">Formulario de Despesa</h3>
 				<div class="form-group">
@@ -14,17 +18,17 @@
 			
 				<div class="form-group">
 					<label for="descricao">Descrição:</label>
-					<input type="text" class="form-control" id="descricao" name="descricao" value="<%=despesa.descricao%>" placeholder="Descreva a despesa">
+					<input type="text" class="form-control" id="descricao" name="descricao" value="<%=despesa.descricao%>" placeholder="Digite a despesa">
 				</div>
 
 				<div class="form-group">
-					<label for="valorTotal">Valor:</label>
-					<input type="text" class="form-control" id="valorTotal" name="valorTotal" value="<%=despesa.valorTotal%>" placeholder="Informe o valor total">
+					<label for="valorTotal">Valor Total: (R$)</label>
+					<input type="text" class="form-control" id="valorTotal" name="valorTotal" value="<%=despesa.valorTotal%>" placeholder="Digite o valor total">
 				</div>
 			
 				<div class="form-group">
-					<label for="diasPagar">Tempo pra Pagar:</label>
-					<input type="text" class="form-control" id="diasPagar" name="diasPagar" value="<%=despesa.diasPagar%>" placeholder="Prazo para pagamento">
+					<label for="diasPagar">Dias pra Pagar:</label>
+					<input type="text" class="form-control" id="diasPagar" name="diasPagar" value="<%=despesa.diasPagar%>" placeholder="Digite o prazo de dias">
 				</div>
 			
 				<div class="form-group">
@@ -36,7 +40,7 @@
 					<section>
 						<label for="mtdPagamento">Método de Pagamento</label>
 						<select name="mtdPagamento" id="mtdPagamento">
-							<option value="" selected disabled>Selecione um Método de Pagamento</option>
+							<option value="" selected disabled>Selecione um Método</option>
 							<option value="Pix">PIX</option>
 							<option value="Cheque">Cheque</option>
 							<option value="Transferencia">Transferencia</option>

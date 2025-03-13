@@ -1,0 +1,66 @@
+<%-include('../partes/head')%>
+	<body>
+		<%-include('../partes/header')%>
+			<div class="vendas-container">
+				<div class="search-center">
+					<div class="search-container">
+						<span class="iconify search-icon" data-icon="mdi:magnify"></span>
+						<input type="text" class="search-input" placeholder="Buscar por nome...">
+					</div>
+					<div>
+						<a href="/add_estoque">
+							<button class="register-button">
+								<span class="iconify buttonAdicionar" data-icon="tabler:cash-register"></span>
+							</button>
+						</a>
+					</div>
+				</div>
+				<%-include('../partes/notificacao')%>
+				<% if (estoques.length> 0) { %>
+					<% for (let i=0; i < estoques.length; i++) { %>
+						<div class="venda-item">
+							<div class="venda-wrapper">
+								<a class="venda">
+									<%= estoques[i].nomeLugar %>
+								</a>
+							</div>
+							<p class="sacas quantidade">
+								<strong>Capacidade máxima:</strong>
+								<%=estoques[i].quantidadeMax%> sacas
+							</p>
+							<div class="venda-actions">
+								<a href="/estoque/excluir/<%=estoques[i].idEsto%>"><button class="delete-button"
+										onclick="return confirm('Tem certeza que deseja excluir?');">
+										<span class="iconify" data-icon="mdi:trash-can-outline"></span> Excluir
+									</button></a>
+							</div>
+						</div>
+					<%} %>
+				<%} else { %>
+					<h2>Nenhum estoque encontrado.</h2>
+				<% } %>
+			</div>
+			<%-include('../partes/footer')%>
+	</body>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const searchInput = document.querySelector(".search-input");
+			const vendaItems = document.querySelectorAll(".venda-item");
+
+			searchInput.addEventListener("input", function () {
+				const searchTerm = searchInput.value.toLowerCase();
+
+				vendaItems.forEach(item => {
+					const nomeEmpresa = item.querySelector(".venda").textContent.toLowerCase(); // Nome da empresa
+
+					if (nomeEmpresa.includes(searchTerm)) {
+						item.style.display = "flex"; // Mostra a venda se o nome da empresa corresponder
+					} else {
+						item.style.display = "none"; // Esconde se não corresponder
+					}
+				});
+			});
+		});
+	</script>
+
+	</html>
